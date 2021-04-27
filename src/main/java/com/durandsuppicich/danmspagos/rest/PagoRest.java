@@ -1,12 +1,10 @@
 package com.durandsuppicich.danmspagos.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 import com.durandsuppicich.danmspagos.domain.Pago;
+import com.durandsuppicich.danmspagos.service.IServicioPago;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,63 +21,47 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/pago")
-@Api(value = "PagoRest", description =  "Permite gestionar los pagos")
+@Api(value = "PagoRest", description = "Permite gestionar los pagos")
 public class PagoRest {
-    
-    private List<Pago> pagos = new ArrayList<Pago>();
-    private Integer ID_GEN = 1;
+
+    private final IServicioPago servicioPago;
+
+    public PagoRest(IServicioPago servicioPago) {
+        this.servicioPago = servicioPago;
+    }
 
     @PostMapping
     @ApiOperation(value = "Registra un nuevo pago")
     public ResponseEntity<Pago> crear(@RequestBody Pago pago) {
-        pago.setId(ID_GEN++);
-        pagos.add(pago);
-        return ResponseEntity.ok(pago);
+        Pago body = servicioPago.crear(pago);
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping
     @ApiOperation(value = "Lista todos los pagos")
     public ResponseEntity<List<Pago>> todos() {
-        return ResponseEntity.ok(pagos);
+        List<Pago> body = servicioPago.todos();
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping(path = "/{id}")
     @ApiOperation(value = "Busca un pago por id")
     public ResponseEntity<Pago> pagoPorId(@PathVariable Integer id) {
-        Optional<Pago> pago = pagos
-                .stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst();
-        return ResponseEntity.of(pago);
+        Optional<Pago> body = servicioPago.pagoPorId(id);
+        return ResponseEntity.of(body);
     }
 
     @PutMapping(path = "/{id}")
     @ApiOperation(value = "Actualiza un pago en base al id")
     public ResponseEntity<Pago> actualizar(@RequestBody Pago pago,  @PathVariable Integer id) {
-        OptionalInt indexOpt =   IntStream.range(0, pagos.size())
-        .filter(i -> pagos.get(i).getId().equals(id))
-        .findFirst();
-
-        if (indexOpt.isPresent()) {
-            pagos.set(indexOpt.getAsInt(), pago);
-            return ResponseEntity.ok(pago);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        servicioPago.actualizar(id, pago);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/{id}")
     @ApiOperation(value = "Elimina un pago en base al id")
     public ResponseEntity<Pago> eliminar(@PathVariable Integer id) {
-        OptionalInt indexOpt =   IntStream.range(0, pagos.size())
-        .filter(i -> pagos.get(i).getId().equals(id))
-        .findFirst();
-
-        if (indexOpt.isPresent()) {
-            pagos.remove(indexOpt.getAsInt());
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        servicioPago.eliminar(id);
+        return ResponseEntity.ok().build();
     }
 }
