@@ -21,6 +21,7 @@ public class Pago {
     @Column(name = "ID_PAGO")
     private Integer id;
 
+    @OneToOne
     @JoinColumn(name = "ID_CLIENTE")
 	private Cliente cliente;
 

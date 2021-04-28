@@ -9,5 +9,4 @@ public class DanMsPagosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DanMsPagosApplication.class, args);
 	}
-
 }

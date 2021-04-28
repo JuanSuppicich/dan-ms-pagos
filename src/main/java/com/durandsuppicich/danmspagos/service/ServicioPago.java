@@ -37,9 +37,7 @@ public class ServicioPago implements IServicioPago {
         if (pagoRepository.existsById(id)) {
             pagoRepository.save(pago);
         }
-        else {
-            // Lanzar excepción
-        }
+        // Lanzar excepción
     }
 
     @Override
@@ -47,8 +45,6 @@ public class ServicioPago implements IServicioPago {
         if (pagoRepository.existsById(id)) {
             pagoRepository.deleteById(id);
         }
-        else {
-            // Lanzar excepción
-        }
+        // Lanzar excepción
     }
 }
