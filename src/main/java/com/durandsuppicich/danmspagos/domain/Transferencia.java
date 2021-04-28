@@ -1,30 +1,46 @@
 package com.durandsuppicich.danmspagos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TRANSFERENCIA")
 public class Transferencia extends MedioPago {
 
+    @Column(nullable = false, length = 22)
     private String cbuOrigen;
+
+    @Column(nullable = false, length = 22)
 	private String cbuDestino;
+
+    @Column(unique = true, nullable = false)
 	private Long codigo;
-    
+
     public String getCbuOrigen() {
         return cbuOrigen;
     }
+
     public void setCbuOrigen(String cbuOrigen) {
         this.cbuOrigen = cbuOrigen;
     }
+
     public String getCbuDestino() {
         return cbuDestino;
     }
+
     public void setCbuDestino(String cbuDestino) {
         this.cbuDestino = cbuDestino;
     }
+
     public Long getCodigo() {
         return codigo;
     }
+
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
-    
+
     @Override
     public String toString() {
         return "Transferencia [cbuDestino=" + cbuDestino + ", cbuOrigen=" + cbuOrigen + ", codigo=" + codigo + "]";

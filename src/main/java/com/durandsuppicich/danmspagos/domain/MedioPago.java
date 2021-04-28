@@ -1,23 +1,43 @@
 package com.durandsuppicich.danmspagos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "MEDIO_PAGO")
 public class MedioPago {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_MEDIO_PAGO")
     protected Integer id;
+
+    @Column(length = 128)
 	protected String observacion;
-    
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getObservacion() {
         return observacion;
     }
+
     public void setObservacion(String observacion) {
         this.observacion = observacion;
     }
-    
+
     @Override
     public String toString() {
         return "MedioPago [id=" + id + ", observacion=" + observacion + "]";

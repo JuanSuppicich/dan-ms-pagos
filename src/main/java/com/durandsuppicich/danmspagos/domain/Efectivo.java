@@ -1,7 +1,14 @@
 package com.durandsuppicich.danmspagos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EFECTIVO")
 public class Efectivo extends MedioPago {
-    
+
+    @Column(unique = true, nullable = false)
     private Integer nroRecibo;
 
     public Integer getNroRecibo() {
