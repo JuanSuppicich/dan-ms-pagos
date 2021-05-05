@@ -27,7 +27,7 @@ public class Pago {
 
 	private Instant fecha;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_MEDIO_PAGO")
 	private MedioPago medio;
 

@@ -31,20 +31,4 @@ public class ServicioPago implements IServicioPago {
     public Optional<Pago> pagoPorId(Integer id) {
         return pagoRepository.findById(id);
     }
-
-    @Override
-    public void actualizar(Integer id, Pago pago) {
-        if (pagoRepository.existsById(id)) {
-            pagoRepository.save(pago);
-        }
-        // Lanzar excepción
-    }
-
-    @Override
-    public void eliminar(Integer id) {
-        if (pagoRepository.existsById(id)) {
-            pagoRepository.deleteById(id);
-        }
-        // Lanzar excepción
-    }
 }
