@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "MEDIO_PAGO")
+@Table(name = "MEDIO_PAGO", schema = "MS_PAGOS")
 public class MedioPago {
 
     @Id
@@ -21,6 +21,12 @@ public class MedioPago {
 
     @Column(length = 128)
 	protected String observacion;
+
+    public MedioPago() { }
+
+    public MedioPago(String observacion) {
+        this.observacion = observacion;
+    }
 
     public Integer getId() {
         return id;

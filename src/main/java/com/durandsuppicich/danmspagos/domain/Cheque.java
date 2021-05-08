@@ -7,17 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CHEQUE")
+@Table(name = "CHEQUE", schema = "MS_PAGOS")
 public class Cheque extends MedioPago {
 
     @Column(unique = true, nullable = false)
     private Integer numero;
 
-    @Column(nullable = false)
+    @Column(name = "FECHA_COBRO")
 	private Instant fechaCobro;
 
     @Column(nullable = false, length = 32)
 	private String banco;
+
+    public Cheque() { }
+
+    public Cheque(String observacion, Integer numero, Instant fechaCobro, String banco) {
+        super(observacion);
+        this.numero = numero;
+        this.fechaCobro = fechaCobro;
+        this.banco = banco;
+    }
 
     public Integer getNumero() {
         return numero;

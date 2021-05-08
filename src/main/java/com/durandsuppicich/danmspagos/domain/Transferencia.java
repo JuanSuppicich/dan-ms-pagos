@@ -5,17 +5,26 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRANSFERENCIA")
+@Table(name = "TRANSFERENCIA", schema = "MS_PAGOS")
 public class Transferencia extends MedioPago {
 
-    @Column(nullable = false, length = 22)
+    @Column(name = "CBU_ORIGEN", nullable = false, length = 22)
     private String cbuOrigen;
 
-    @Column(nullable = false, length = 22)
+    @Column(name = "CBU_DESTINO", nullable = false, length = 22)
 	private String cbuDestino;
 
     @Column(unique = true, nullable = false)
 	private Long codigo;
+
+    public Transferencia() { }
+
+    public Transferencia(String observacion, String cbuOrigen, String cbuDestino, Long codigo) {
+        super(observacion);
+        this.cbuOrigen = cbuOrigen;
+        this.cbuDestino = cbuDestino;
+        this.codigo = codigo;
+    }
 
     public String getCbuOrigen() {
         return cbuOrigen;

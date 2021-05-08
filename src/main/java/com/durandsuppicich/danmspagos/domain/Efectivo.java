@@ -5,11 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EFECTIVO")
+@Table(name = "EFECTIVO", schema = "MS_PAGOS")
 public class Efectivo extends MedioPago {
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "NRO_RECIBO", unique = true, nullable = false)
     private Integer nroRecibo;
+
+    public Efectivo() { }
+
+    public Efectivo(String observacion, Integer nroRecibo) {
+        super(observacion);
+        this.nroRecibo = nroRecibo;
+    }
 
     public Integer getNroRecibo() {
         return nroRecibo;

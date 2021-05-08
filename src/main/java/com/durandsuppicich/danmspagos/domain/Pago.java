@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PAGO")
+@Table(name = "PAGO", schema = "MS_PAGOS")
 public class Pago {
 
     @Id
@@ -30,6 +30,14 @@ public class Pago {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_MEDIO_PAGO")
 	private MedioPago medio;
+
+    public Pago() { }
+
+    public Pago(Cliente cliente, Instant fecha, MedioPago medio) {
+        this.cliente = cliente;
+        this.fecha = fecha;
+        this.medio = medio;
+    }
 
     public Integer getId() {
         return id;

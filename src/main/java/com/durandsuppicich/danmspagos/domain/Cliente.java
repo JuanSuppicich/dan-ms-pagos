@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "CLIENTE", schema = "MS_PAGOS")
 public class Cliente {
 
     @Id
@@ -21,6 +21,15 @@ public class Cliente {
 
     @Column(nullable = false)
     private String mail;
+
+    public Cliente() { }
+
+    public Cliente(Integer id, String razonSocial, String cuit, String mail) {
+        this.id = id;
+        this.razonSocial = razonSocial;
+        this.cuit = cuit;
+        this.mail = mail;
+    }
 
     public Integer getId() {
         return id;
