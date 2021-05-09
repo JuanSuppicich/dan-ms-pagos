@@ -1,8 +1,22 @@
 package com.durandsuppicich.danmspagos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EFECTIVO", schema = "MS_PAGOS")
 public class Efectivo extends MedioPago {
-    
+
+    @Column(name = "NRO_RECIBO", unique = true, nullable = false)
     private Integer nroRecibo;
+
+    public Efectivo() { }
+
+    public Efectivo(String observacion, Integer nroRecibo) {
+        super(observacion);
+        this.nroRecibo = nroRecibo;
+    }
 
     public Integer getNroRecibo() {
         return nroRecibo;

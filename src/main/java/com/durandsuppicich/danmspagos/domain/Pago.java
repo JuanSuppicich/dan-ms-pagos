@@ -2,34 +2,70 @@ package com.durandsuppicich.danmspagos.domain;
 
 import java.time.Instant;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PAGO", schema = "MS_PAGOS")
 public class Pago {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_PAGO")
     private Integer id;
+
+    @OneToOne
+    @JoinColumn(name = "ID_CLIENTE")
 	private Cliente cliente;
+
 	private Instant fecha;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_MEDIO_PAGO")
 	private MedioPago medio;
-    
+
+    public Pago() { }
+
+    public Pago(Cliente cliente, Instant fecha, MedioPago medio) {
+        this.cliente = cliente;
+        this.fecha = fecha;
+        this.medio = medio;
+    }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public Cliente getCliente() {
         return cliente;
     }
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
     public Instant getFecha() {
         return fecha;
     }
+
     public void setFecha(Instant fecha) {
         this.fecha = fecha;
     }
+
     public MedioPago getMedio() {
         return medio;
     }
+
     public void setMedio(MedioPago medio) {
         this.medio = medio;
     }

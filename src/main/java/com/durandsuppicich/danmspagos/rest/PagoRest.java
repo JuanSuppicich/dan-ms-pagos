@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import com.durandsuppicich.danmspagos.domain.Pago;
+import com.durandsuppicich.danmspagos.exception.NotFoundException;
 import com.durandsuppicich.danmspagos.service.IServicioPago;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,35 +32,32 @@ public class PagoRest {
     @PostMapping
     @ApiOperation(value = "Registra un nuevo pago")
     public ResponseEntity<Pago> crear(@RequestBody Pago pago) {
+
         Pago body = servicioPago.crear(pago);
+
         return ResponseEntity.ok(body);
     }
 
     @GetMapping
     @ApiOperation(value = "Lista todos los pagos")
     public ResponseEntity<List<Pago>> todos() {
+
         List<Pago> body = servicioPago.todos();
+
         return ResponseEntity.ok(body);
     }
 
     @GetMapping(path = "/{id}")
     @ApiOperation(value = "Busca un pago por id")
     public ResponseEntity<Pago> pagoPorId(@PathVariable Integer id) {
+
         Optional<Pago> body = servicioPago.pagoPorId(id);
-        return ResponseEntity.of(body);
-    }
-
-    @PutMapping(path = "/{id}")
-    @ApiOperation(value = "Actualiza un pago en base al id")
-    public ResponseEntity<Pago> actualizar(@RequestBody Pago pago,  @PathVariable Integer id) {
-        servicioPago.actualizar(id, pago);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping(path = "/{id}")
-    @ApiOperation(value = "Elimina un pago en base al id")
-    public ResponseEntity<Pago> eliminar(@PathVariable Integer id) {
-        servicioPago.eliminar(id);
-        return ResponseEntity.ok().build();
+        
+        if (body.isPresent()) {
+            return ResponseEntity.ok(body.get());
+        }
+        else {
+            throw new NotFoundException("Pago no encontrado. Id: " + id);
+        }
     }
 }

@@ -1,33 +1,63 @@
 package com.durandsuppicich.danmspagos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CLIENTE", schema = "MS_PAGOS")
 public class Cliente {
-    
+
+    @Id
+    @Column(name = "ID_CLIENTE")
     private Integer id;
+
+    @Column(nullable = false, length = 32)
     private String razonSocial;
+
+    @Column(nullable = false, unique = true, length = 11)
     private String cuit;
+
+    @Column(nullable = false)
     private String mail;
-    
+
+    public Cliente() { }
+
+    public Cliente(Integer id, String razonSocial, String cuit, String mail) {
+        this.id = id;
+        this.razonSocial = razonSocial;
+        this.cuit = cuit;
+        this.mail = mail;
+    }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getRazonSocial() {
         return razonSocial;
     }
+
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
+
     public String getCuit() {
         return cuit;
     }
+
     public void setCuit(String cuit) {
         this.cuit = cuit;
     }
     public String getMail() {
         return mail;
     }
+
     public void setMail(String mail) {
         this.mail = mail;
     }

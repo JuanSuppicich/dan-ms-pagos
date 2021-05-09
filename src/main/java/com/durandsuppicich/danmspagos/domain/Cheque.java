@@ -2,27 +2,52 @@ package com.durandsuppicich.danmspagos.domain;
 
 import java.time.Instant;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CHEQUE", schema = "MS_PAGOS")
 public class Cheque extends MedioPago {
-    
+
+    @Column(unique = true, nullable = false)
     private Integer numero;
+
+    @Column(name = "FECHA_COBRO")
 	private Instant fechaCobro;
+
+    @Column(nullable = false, length = 32)
 	private String banco;
-    
+
+    public Cheque() { }
+
+    public Cheque(String observacion, Integer numero, Instant fechaCobro, String banco) {
+        super(observacion);
+        this.numero = numero;
+        this.fechaCobro = fechaCobro;
+        this.banco = banco;
+    }
+
     public Integer getNumero() {
         return numero;
     }
+
     public void setNumero(Integer numero) {
         this.numero = numero;
     }
+
     public Instant getFechaCobro() {
         return fechaCobro;
     }
+
     public void setFechaCobro(Instant fechaCobro) {
         this.fechaCobro = fechaCobro;
     }
+
     public String getBanco() {
         return banco;
     }
+
     public void setBanco(String banco) {
         this.banco = banco;
     }
