@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.durandsuppicich.danmspagos.domain.Pago;
+import com.durandsuppicich.danmspagos.exception.NotFoundException;
 import com.durandsuppicich.danmspagos.service.IServicioPago;
 
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,11 @@ public class PagoRest {
 
         Optional<Pago> body = servicioPago.pagoPorId(id);
         
-        return ResponseEntity.of(body);
+        if (body.isPresent()) {
+            return ResponseEntity.ok(body.get());
+        }
+        else {
+            throw new NotFoundException("Pago no encontrado. Id: " + id);
+        }
     }
 }
