@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -59,5 +60,14 @@ public class PagoRest {
         else {
             throw new NotFoundException("Pago no encontrado. Id: " + id);
         }
+    }
+
+    @GetMapping(params = "cuit")
+    @ApiOperation(value = "Busca los pagos asociados al cuit de un cliente")
+    public ResponseEntity<List<Pago>> pagosPorCuit(@RequestParam(name = "cuit") String cuit) {
+        
+        List<Pago> body = servicioPago.pagosPorCuit(cuit);
+        
+        return ResponseEntity.ok(body);
     }
 }

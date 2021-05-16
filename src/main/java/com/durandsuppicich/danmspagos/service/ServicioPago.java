@@ -31,4 +31,9 @@ public class ServicioPago implements IServicioPago {
     public Optional<Pago> pagoPorId(Integer id) {
         return pagoRepository.findById(id);
     }
+
+    @Override
+    public List<Pago> pagosPorCuit(String cuit) {
+        return pagoRepository.findByCliente_cuit(cuit);
+    }
 }
