@@ -10,4 +10,5 @@ public interface IServicioPago {
     Pago crear(Pago pago);
     List<Pago> todos();
     Optional<Pago> pagoPorId(Integer id);
+    List<Pago> pagosPorCuit(String cuit);
 }

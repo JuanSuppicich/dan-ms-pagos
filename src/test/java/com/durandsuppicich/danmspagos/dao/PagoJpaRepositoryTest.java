@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+import com.durandsuppicich.danmspagos.DanMsPagosApplicationTests;
 import com.durandsuppicich.danmspagos.domain.Cheque;
 import com.durandsuppicich.danmspagos.domain.Cliente;
 import com.durandsuppicich.danmspagos.domain.Efectivo;
@@ -22,7 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.jdbc.Sql;
 
-@SpringBootTest
+@SpringBootTest(classes = DanMsPagosApplicationTests.class)
 @Profile("testing")
 public class PagoJpaRepositoryTest {
 

@@ -12,7 +12,7 @@ INSERT INTO MS_PAGOS.CHEQUE (numero, banco, id_medio_pago) VALUES
 INSERT INTO MS_PAGOS.TRANSFERENCIA (cbu_origen, cbu_destino, codigo, id_medio_pago) VALUES
     ('0101010101', '1010101010', 1L, 3);
 
-INSERT INTO MS_PAGOS.CLIENTE (id_cliente, razon_social, cuit, mail) VALUES
+INSERT INTO MS_USUARIOS.CLIENTE (id_cliente, razon_social, cuit, mail) VALUES
     (1, 'Cliente01', '11111111111', 'cliente01@example.com'),
     (2, 'Cliente02', '22222222222', 'cliente02@example.com');
 
