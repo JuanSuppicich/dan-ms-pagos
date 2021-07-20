@@ -13,30 +13,30 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PAGO", schema = "MS_PAGOS")
-public class Pago {
+@Table(name = "payment", schema = "ms_accounting")
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PAGO")
+    @Column(name = "payment_id")
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "ID_CLIENTE")
-	private Cliente cliente;
+    @JoinColumn(name = "customer_id")
+	private Customer customer;
 
-	private Instant fecha;
+	private Instant paymentDate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_MEDIO_PAGO")
-	private MedioPago medio;
+    @JoinColumn(name = "payment_method_id")
+	private PaymentMethod method;
 
-    public Pago() { }
+    public Payment() { }
 
-    public Pago(Cliente cliente, Instant fecha, MedioPago medio) {
-        this.cliente = cliente;
-        this.fecha = fecha;
-        this.medio = medio;
+    public Payment(Customer customer, Instant paymentDate, PaymentMethod method) {
+        this.customer = customer;
+        this.paymentDate = paymentDate;
+        this.method = method;
     }
 
     public Integer getId() {
@@ -47,39 +47,39 @@ public class Pago {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
-    public Instant getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Instant fecha) {
-        this.fecha = fecha;
+    public Instant getPaymentDate() {
+        return paymentDate;
     }
 
-    public MedioPago getMedio() {
-        return medio;
+    public void setPaymentDate(Instant paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
-    public void setMedio(MedioPago medio) {
-        this.medio = medio;
+    public PaymentMethod getMethod() {
+        return method;
+    }
+
+    public void setMethod(PaymentMethod method) {
+        this.method = method;
     }
 
     @Override
     public String toString() {
-        return "Pago [cliente=" + cliente + ", fecha=" + fecha + ", id=" + id + ", medio=" + medio + "]";
+        return "Payment [customer=" + customer + ", paymentDate=" + paymentDate + ", id=" + id + ", method=" + method + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
+        result = prime * result + ((paymentDate == null) ? 0 : paymentDate.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
@@ -92,11 +92,11 @@ public class Pago {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Pago other = (Pago) obj;
-        if (fecha == null) {
-            if (other.fecha != null)
+        Payment other = (Payment) obj;
+        if (paymentDate == null) {
+            if (other.paymentDate != null)
                 return false;
-        } else if (!fecha.equals(other.fecha))
+        } else if (!paymentDate.equals(other.paymentDate))
             return false;
         if (id == null) {
             if (other.id != null)

@@ -9,32 +9,23 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "MEDIO_PAGO", schema = "MS_PAGOS")
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="type")
-@JsonSubTypes({
-    @JsonSubTypes.Type(value=Efectivo.class, name="efectivo"),
-    @JsonSubTypes.Type(value=Cheque.class, name="cheque"),
-    @JsonSubTypes.Type(value=Transferencia.class, name="transferencia")
-})
-public class MedioPago {
+@Table(name = "payment_method", schema = "ms_accounting")
+public class PaymentMethod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_MEDIO_PAGO")
+    @Column(name = "payment_method_id")
     protected Integer id;
 
     @Column(length = 128)
-	protected String observacion;
+	protected String comment;
 
-    public MedioPago() { }
+    public PaymentMethod() { }
 
-    public MedioPago(String observacion) {
-        this.observacion = observacion;
+    public PaymentMethod(String comment) {
+        this.comment = comment;
     }
 
     public Integer getId() {
@@ -45,17 +36,17 @@ public class MedioPago {
         this.id = id;
     }
 
-    public String getObservacion() {
-        return observacion;
+    public String getComment() {
+        return comment;
     }
 
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
-        return "MedioPago [id=" + id + ", observacion=" + observacion + "]";
+        return "PaymentMethod [id=" + id + ", comment=" + comment + "]";
     }
 
     @Override
@@ -63,7 +54,7 @@ public class MedioPago {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((observacion == null) ? 0 : observacion.hashCode());
+        result = prime * result + ((comment == null) ? 0 : comment.hashCode());
         return result;
     }
 
@@ -75,17 +66,14 @@ public class MedioPago {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        MedioPago other = (MedioPago) obj;
+        PaymentMethod other = (PaymentMethod) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (observacion == null) {
-            if (other.observacion != null)
-                return false;
-        } else if (!observacion.equals(other.observacion))
-            return false;
-        return true;
+        if (comment == null) {
+            return other.comment == null;
+        } else return comment.equals(other.comment);
     }
 }

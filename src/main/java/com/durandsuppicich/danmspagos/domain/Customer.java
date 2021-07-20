@@ -6,29 +6,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTE", schema = "MS_USUARIOS")
-public class Cliente {
+@Table(name = "customer", schema = "ms_users")
+public class Customer {
 
     @Id
-    @Column(name = "ID_CLIENTE")
+    @Column(name = "customer_id")
     private Integer id;
 
     @Column(nullable = false, length = 32)
-    private String razonSocial;
+    private String businessName;
 
     @Column(nullable = false, unique = true, length = 11)
     private String cuit;
 
     @Column(nullable = false)
-    private String mail;
+    private String email;
 
-    public Cliente() { }
+    public Customer() { }
 
-    public Cliente(Integer id, String razonSocial, String cuit, String mail) {
+    public Customer(Integer id, String businessName, String cuit, String email) {
         this.id = id;
-        this.razonSocial = razonSocial;
+        this.businessName = businessName;
         this.cuit = cuit;
-        this.mail = mail;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -39,12 +39,12 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getRazonSocial() {
-        return razonSocial;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     public String getCuit() {
@@ -54,17 +54,17 @@ public class Cliente {
     public void setCuit(String cuit) {
         this.cuit = cuit;
     }
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "Cliente [cuit=" + cuit + ", id=" + id + ", mail=" + mail + ", razonSocial=" + razonSocial + "]";
+        return "Customer [cuit=" + cuit + ", id=" + id + ", email=" + email + ", businessName=" + businessName + "]";
     }
 
     @Override
@@ -73,8 +73,8 @@ public class Cliente {
         int result = 1;
         result = prime * result + ((cuit == null) ? 0 : cuit.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((mail == null) ? 0 : mail.hashCode());
-        result = prime * result + ((razonSocial == null) ? 0 : razonSocial.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((businessName == null) ? 0 : businessName.hashCode());
         return result;
     }
 
@@ -86,7 +86,7 @@ public class Cliente {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cliente other = (Cliente) obj;
+        Customer other = (Customer) obj;
         if (cuit == null) {
             if (other.cuit != null)
                 return false;
@@ -97,16 +97,13 @@ public class Cliente {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (mail == null) {
-            if (other.mail != null)
+        if (email == null) {
+            if (other.email != null)
                 return false;
-        } else if (!mail.equals(other.mail))
+        } else if (!email.equals(other.email))
             return false;
-        if (razonSocial == null) {
-            if (other.razonSocial != null)
-                return false;
-        } else if (!razonSocial.equals(other.razonSocial))
-            return false;
-        return true;
+        if (businessName == null) {
+            return other.businessName == null;
+        } else return businessName.equals(other.businessName);
     }
 }

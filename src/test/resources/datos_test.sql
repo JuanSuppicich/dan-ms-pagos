@@ -13,8 +13,8 @@ INSERT INTO MS_PAGOS.TRANSFERENCIA (cbu_origen, cbu_destino, codigo, id_medio_pa
     ('0101010101', '1010101010', 1L, 3);
 
 INSERT INTO MS_PAGOS.CLIENTE (id_cliente, razon_social, cuit, mail) VALUES
-    (1, 'Cliente01', '11111111111', 'cliente01@example.com'),
-    (2, 'Cliente02', '22222222222', 'cliente02@example.com');
+    (1, 'Cliente01', '11111111111', 'customer01@example.com'),
+    (2, 'Cliente02', '22222222222', 'customer02@example.com');
 
 INSERT INTO MS_PAGOS.PAGO (id_cliente, id_medio_pago) VALUES
     (1, 1),

@@ -1,6 +1,6 @@
-# Dan-ms-pagos
+# Dan-ms-payments
 
-Repositorio API de pagos para laboratorio curso DAN. 
+Repositorio API de payments para laboratorio curso DAN. 
 
 ## Desarrolladores
 
