@@ -25,7 +25,7 @@ public class Payment {
     @JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	private Instant paymentDate;
+	private Instant date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_method_id")
@@ -33,9 +33,9 @@ public class Payment {
 
     public Payment() { }
 
-    public Payment(Customer customer, Instant paymentDate, PaymentMethod method) {
+    public Payment(Customer customer, Instant date, PaymentMethod method) {
         this.customer = customer;
-        this.paymentDate = paymentDate;
+        this.date = date;
         this.method = method;
     }
 
@@ -54,12 +54,12 @@ public class Payment {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    public Instant getPaymentDate() {
-        return paymentDate;
+    public Instant getDate() {
+        return date;
     }
 
-    public void setPaymentDate(Instant paymentDate) {
-        this.paymentDate = paymentDate;
+    public void setDate(Instant date) {
+        this.date = date;
     }
 
     public PaymentMethod getMethod() {
@@ -72,14 +72,14 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment [customer=" + customer + ", paymentDate=" + paymentDate + ", id=" + id + ", method=" + method + "]";
+        return "Payment [customer=" + customer + ", date=" + date + ", id=" + id + ", method=" + method + "]";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((paymentDate == null) ? 0 : paymentDate.hashCode());
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
@@ -93,10 +93,10 @@ public class Payment {
         if (getClass() != obj.getClass())
             return false;
         Payment other = (Payment) obj;
-        if (paymentDate == null) {
-            if (other.paymentDate != null)
+        if (date == null) {
+            if (other.date != null)
                 return false;
-        } else if (!paymentDate.equals(other.paymentDate))
+        } else if (!date.equals(other.date))
             return false;
         if (id == null) {
             if (other.id != null)

@@ -14,7 +14,7 @@ public class PaymentDto {
 
     @NotNull
     @PastOrPresent
-    private Instant paymentDate;
+    private Instant date;
 
     @NotNull
     @Valid
@@ -28,12 +28,12 @@ public class PaymentDto {
         this.customerId = customerId;
     }
 
-    public Instant getPaymentDate() {
-        return paymentDate;
+    public Instant getDate() {
+        return date;
     }
 
-    public void setPaymentDate(Instant paymentDate) {
-        this.paymentDate = paymentDate;
+    public void setDate(Instant date) {
+        this.date = date;
     }
 
     public PaymentMethodDto getMethod() {

@@ -15,7 +15,7 @@ public class PaymentMapper implements IPaymentMapper {
         Customer customer = new Customer();
 
         customer.setId(paymentDto.getCustomerId());
-        payment.setPaymentDate(paymentDto.getPaymentDate());
+        payment.setDate(paymentDto.getDate());
         payment.setCustomer(customer);
 
         if (paymentDto.getMethod() instanceof CashDto) {
@@ -39,7 +39,7 @@ public class PaymentMapper implements IPaymentMapper {
         PaymentMethodDto paymentMethodDto= new PaymentMethodDto();
 
         paymentDto.setCustomerId(payment.getCustomer().getId());
-        paymentDto.setPaymentDate(payment.getPaymentDate());
+        paymentDto.setDate(payment.getDate());
 
         if (payment.getMethod() instanceof Cash) {
             paymentDto.setMethod(mapToCashDto(payment.getMethod()));
