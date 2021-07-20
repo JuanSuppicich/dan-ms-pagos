@@ -11,9 +11,9 @@ import javax.validation.constraints.NotBlank;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, property="type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value= Cash.class, name="cash"),
-        @JsonSubTypes.Type(value= Check.class, name="check"),
-        @JsonSubTypes.Type(value= Transfer.class, name="transfer")
+        @JsonSubTypes.Type(value= CashDto.class, name="cash"),
+        @JsonSubTypes.Type(value= CheckDto.class, name="check"),
+        @JsonSubTypes.Type(value= TransferDto.class, name="transfer")
 })
 public class PaymentMethodDto {
 

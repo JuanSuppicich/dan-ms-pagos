@@ -2,7 +2,9 @@ package com.durandsuppicich.danmspagos.service;
 
 import java.util.List;
 
+import com.durandsuppicich.danmspagos.domain.Transfer;
 import com.durandsuppicich.danmspagos.exception.payment.PaymentIdNotFoundException;
+import com.durandsuppicich.danmspagos.exception.validation.IllegalCbuException;
 import com.durandsuppicich.danmspagos.repository.IPaymentJpaRepository;
 import com.durandsuppicich.danmspagos.domain.Payment;
 
@@ -19,6 +21,15 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payment post(Payment payment) {
+
+        if (payment.getMethod() instanceof Transfer) {
+
+            Transfer transfer = (Transfer) payment.getMethod();
+
+            if (transfer.getCbuOrigin().equals(transfer.getCbuDestination())) {
+                throw new IllegalCbuException(transfer.getCbuOrigin(), transfer.getCbuDestination());
+            }
+        }
         return paymentRepository.save(payment);
     }
 

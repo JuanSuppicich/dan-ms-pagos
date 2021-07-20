@@ -1,6 +1,7 @@
 package com.durandsuppicich.danmspagos.exception;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import javax.xml.bind.ValidationException;
 
 import com.durandsuppicich.danmspagos.exception.http.*;
@@ -43,7 +44,8 @@ public class ApiExceptionHandler {
             MissingRequestHeaderException.class,
             MissingServletRequestParameterException.class,
             ServletRequestBindingException.class,
-            TypeMismatchException.class
+            TypeMismatchException.class,
+            ConstraintViolationException.class
     })
     @ResponseBody
     public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
@@ -51,7 +53,7 @@ public class ApiExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class,})
     @ResponseBody
     public ErrorMessage validationBadRequest(HttpServletRequest request,
                                              MethodArgumentNotValidException exception) {

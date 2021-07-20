@@ -1,5 +1,6 @@
 package com.durandsuppicich.danmspagos.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import com.durandsuppicich.danmspagos.domain.Payment;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -50,7 +52,13 @@ public class PaymentController {
         Payment result = paymentService.post(payment);
         PaymentDto body = paymentMapper.map(result);
 
-        return ResponseEntity.ok(body);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(body.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(body);
     }
 
     @GetMapping

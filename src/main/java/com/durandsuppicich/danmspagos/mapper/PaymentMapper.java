@@ -38,6 +38,7 @@ public class PaymentMapper implements IPaymentMapper {
         PaymentDto paymentDto = new PaymentDto();
         PaymentMethodDto paymentMethodDto= new PaymentMethodDto();
 
+        paymentDto.setId(payment.getId());
         paymentDto.setCustomerId(payment.getCustomer().getId());
         paymentDto.setDate(payment.getDate());
 
