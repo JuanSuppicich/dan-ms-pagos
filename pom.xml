@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>com.durand-suppicich</groupId>
-	<artifactId>dan-ms-payments</artifactId>
+	<artifactId>dan-ms-pagos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dan-ms-payments</name>
+	<name>dan-ms-pagos</name>
 	<description>Lab DAM API Pagos</description>
 	<properties>
 		<java.version>11</java.version>
@@ -20,7 +20,7 @@
 
 	<dependencies>
 
-		<!-- SPRING_BOOT WEB -->
+		<!-- SPRING-BOOT WEB -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
