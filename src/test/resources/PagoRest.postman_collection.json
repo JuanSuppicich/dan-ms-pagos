@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "97f11e86-a2bf-4f5c-836d-6c5d321d3b53",
+		"name": "PagoRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    },\r\n    \"fecha\": \"2021-05-06T14:36:24.148Z\",\r\n    \"medio\": {\r\n        \"type\": \"efectivo\",\r\n        \"observacion\": \"Observacion01\",\r\n        \"nroRecibo\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-PagoRest}}",
+					"host": [
+						"{{url-PagoRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    },\r\n    \"fecha\": \"2021-05-06T14:36:24.148Z\",\r\n    \"medio\": {\r\n        \"type\": \"cheque\",\r\n        \"observacion\": \"Observacion02\",\r\n        \"numero\": 1,\r\n        \"fechaCobro\": \"2021-07-06T14:36:24.148Z\",\r\n        \"banco\": \"Banco01\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-PagoRest}}",
+					"host": [
+						"{{url-PagoRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 2\r\n    },\r\n    \"fecha\": \"2021-05-06T14:36:24.148Z\",\r\n    \"medio\": {\r\n        \"type\": \"transferencia\",\r\n        \"observacion\": \"Observacion03\",\r\n        \"cbuOrigen\": \"01010101010\",\r\n        \"cbuDestino\": \"10101010101\",\r\n        \"codigo\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-PagoRest}}",
+					"host": [
+						"{{url-PagoRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-PagoRest}}",
+					"host": [
+						"{{url-PagoRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagoPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-PagoRest}}/1",
+					"host": [
+						"{{url-PagoRest}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagosPorCuit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-PagoRest}}?cuit=111111111",
+					"host": [
+						"{{url-PagoRest}}"
+					],
+					"query": [
+						{
+							"key": "cuit",
+							"value": "111111111"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url-PagoRest",
+			"value": "http://localhost:9003/api/pago"
+		}
+	]
+}
